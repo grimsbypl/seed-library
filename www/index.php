@@ -20,8 +20,8 @@ include("header.inc");
 What would you like to do:
 <ul>
 	<li><a href="borrowForm.php">Borrow Seeds</a></li>
-	<li><a href="lendForm.php">Add seeds to the library Seeds</a></li>
-	<li><a href="ViewAll.php">View Transcations</a></li>
+	<li><a href="lendForm.php">Add seeds to the library</a></li>
+	<li><a href="ViewAll.php">View Transactions</a></li>
 </ul>
 </p>
 <?include("footer.inc");?>

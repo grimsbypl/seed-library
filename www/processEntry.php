@@ -41,7 +41,7 @@ $result = mysqli_query($cxn,$sql)
 if($result != NULL) {
 	echo "\n Your transaction has been processed.  Thanks for using the Seed Library. ";
 	echo "<br> Would you like to ";
-	echo "<a href='TransType.php'>make another transaction?</a>\n";
+	echo "<a href='index.php'>make another transaction?</a>\n";
 		}
 
 	 echo "<br><br> <a href = logout.php>Log out</a>";

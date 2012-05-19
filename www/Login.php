@@ -3,7 +3,7 @@ error_reporting(E_ALL); // report all errors
 session_start();
 if(isset($_SESSION['auth']) && $_SESSION['auth'] == "yes")
 {
-  header("Location: TransType.php");
+  header("Location: index.php");
   exit();
 }
 
