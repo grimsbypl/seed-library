@@ -15,7 +15,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 	$login_pass = $_POST['Password'];       
 
 	$sql = sprintf(
-		"SELECT Email, Password FROM userseedreg WHERE Email='%s' AND password=md5('%s')",
+		"SELECT id FROM users WHERE Email='%s' AND password=md5('%s')",
 		mysql_real_escape_string($login_name), 
 		mysql_real_escape_string($login_pass));  
 	$result = mysqli_query($cxn, $sql) or die("Couldn't execute query: $sql" . mysqli_error($cxn));
@@ -24,7 +24,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 		$_SESSION['auth'] = "yes";
 		$_SESSION['logname'] = $login_name;
 
-		$sql = sprintf("INSERT INTO Login (Email,loginTime) VALUES ('%s',now())", mysql_real_escape_string($login_name));
+		$row = mysqli_fetch_assoc($result);
+		$sql = sprintf("INSERT INTO logins (UserID,loginTime) VALUES ('%s',now())", mysql_real_escape_string($row['id']));
 		$result = mysqli_query($cxn,$sql) or die("Can't execute insert query.");
 		header("Location: TransType.php");
 	} else {

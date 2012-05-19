@@ -32,14 +32,14 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 	}
 
 	if (empty($message)) {
-		$sql = sprintf("SELECT Email FROM userseedreg WHERE Email = '%s'",
+		$sql = sprintf("SELECT Email FROM users WHERE Email = '%s'",
 				mysql_real_escape_string($_POST['Email']));
 		$result = mysqli_query($cxn, $sql)  or die("Couldn't execute select query." . mysqli_error($cxn));
 		$num = mysqli_num_rows($result);
 		if ($num > 0) {
 			$message = $_POST['Email'] . " already used.  Select another email address to use.";
 		} else {
-			$sql = sprintf("INSERT INTO userseedreg (DateReg, NameFirst, NameLast, Email, Password) values(now(), '%s', '%s', '%s', md5('%s'))",
+			$sql = sprintf("INSERT INTO users (DateReg, NameFirst, NameLast, Email, Password) values(now(), '%s', '%s', '%s', md5('%s'))",
 				mysql_real_escape_string($_POST['FirstName']),
 				mysql_real_escape_string($_POST['LastName']),
 				mysql_real_escape_string($_POST['Email']),
