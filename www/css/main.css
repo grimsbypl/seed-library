@@ -1,16 +1,63 @@
+a { color: #006633; }
+a:hover { text-decoration: none; }
+
+h2 {
+	background: #ceca9b;
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0.5em;
+	color: 534741;
+	text-align: center;
+}
+
+#container {
+	margin: 0 auto;
+	width: 800px;
+	text-align: center;
+}
+
+#main {
+	text-align: left;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+#header {
+	text-align: right;
+}
+
 #header img.logo {
-	width: 10%;
-	float: left;
+	width: 15%;
 }
 
 #footer {
-	clear: both;
+	padding-top: 1em;
+	border-top: 1px solid #555;
 	font-size: 0.8em;
+	text-align: right;
+	clear: both;
+}
+
+.error_text {
+	color: red;
+}
+
+.box {
+	border: 1px solid #acadab;
+	background: #bed2a4;
+	box-shadow: 0px 0px 5px #888;
+	border-radius: 3px;
 }
 
 #login {
-	float: right;
-	margin-right: 2em;
+	margin-left: 1em;
+	width: 12em;
+}
+
+#login form {
+	padding-left: 1em;
+	padding-top: 1em;
+	border-top: 1px solid #acadab;
 }
 
 #login_form div.field {
@@ -21,14 +68,33 @@
 	display: block;
 }
 
+#login .error_text {
+	padding-left: 1em;
+	text-align:center
+}
+
 #login_register {
-	text-align: right;
+	margin-left: 1em;
+	margin-top: 1em;
+	font-size: 0.9em;
 }
 
 #register {
-	margin-left: 2em;
+	margin-left: 1em;
+	width: 15em;
 }
 
-.error_text {
-	color: red;
+#register form {
+	padding-left: 1em;
+	padding-top: 1em;
+	border-top: 1px solid #acadab;
+}
+
+#register div.field input {
+	width: 18em;
+}
+
+#register .error_text {
+	padding-left: 1em;
+	text-align:center
 }

@@ -55,7 +55,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 $title = "Register";
 ?>
 <? require_once("header.inc"); ?>
-	<div id="register">
+	<div id="register" class="box">
 		<h2>Member Registration</h2>
 		<form id="login_form" action='register.php' method='POST'>
 			<div class="field">
@@ -80,6 +80,6 @@ $title = "Register";
 			</div>
 			<input type='submit' value='Register'/>
 		</form>
-		<span class="error_text"><?=$message?></span>
+		<div class="error_text"><?=$message?></div>
 	</div>	
 <? require_once("footer.inc") ?>	

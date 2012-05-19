@@ -29,13 +29,14 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 		$result = mysqli_query($cxn,$sql) or die("Can't execute insert query.");
 		header("Location: index.php");
 	} else {
-		$message = "Invalid username or password.<br/>";
+		$message = "Login unsuccessful.<br/>";
 	}
 }
 $title = "Login"
 ?>
 <? require_once("header.inc"); ?>
-	<div id="login">
+	<div id="login" class="box">
+		<h2>Member Login</h2>
 		<form id="login_form" action='Login.php' method='POST'>
 			<div class="field">
 				<span class="label">Email</span>
@@ -47,9 +48,9 @@ $title = "Login"
 			</div>
 			<input type='submit' value='Login'/>
 		</form>
-		<span class="error_text"><?=$message?></span>
-		<div id="login_register">
-			<a href="register.php">Register</a>
-		</div>
+		<div class="error_text"><?=$message?></div>
 	</div>	
+	<div id="login_register">
+		<a href="register.php">Register</a>
+	</div>
 <? require_once("footer.inc") ?>	
