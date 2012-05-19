@@ -17,8 +17,6 @@ require_once("misc.inc");
 //And put into the Database
  
 
-$cxn = mysqli_connect($host, $user, $pword, $database)
-	   or die ("Couldn't connect to server." . mysqli_error($cxn));
 foreach ($_GET as $field => $value) {
 	$fields[]=$field;
 			$value = (string) $value;
@@ -33,7 +31,7 @@ $sql .= "(".$fields_str.")";
 $sql .= " VALUES ";
 $sql .= "(".'"'.$values_str.'"'.")".";";
 
-//$cxn = mysqli_connect($host, $user, $pword, $database)
+//$cxn = mysqli_connect($host, $user, $pword, $database, $port)
 //	   or die ("Couldn't connect to server." . mysqli_error($cxn));
 //echo "$sql<br>";
 //echo "($host, $user, $pword, $database)\n";

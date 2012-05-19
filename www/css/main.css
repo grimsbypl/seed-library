@@ -1,0 +1,34 @@
+#header img.logo {
+	width: 10%;
+	float: left;
+}
+
+#footer {
+	clear: both;
+	font-size: 0.8em;
+}
+
+#login {
+	float: right;
+	margin-right: 2em;
+}
+
+#login_form div.field {
+	padding-bottom: 1em;
+}
+
+#login_form span.label {
+	display: block;
+}
+
+#login_register {
+	text-align: right;
+}
+
+#register {
+	margin-left: 2em;
+}
+
+.error_text {
+	color: red;
+}

@@ -28,8 +28,6 @@ function get_param($name) {
 //Combination of Date, MemberID(Email), Common_Name, and Variety 
 //Should be the same.
 
-$cxn = mysqli_connect($host, $user, $pword, $database)
-	   or die ("Couldn't connect to server." . mysqli_error($cxn));
 $Common_Name = mysqli_real_escape_string($cxn,$_POST['Common_Name']);
 
 $sqlcheck = "SELECT Common_Name, Date, MemberID, Variety
@@ -58,8 +56,6 @@ if($resultscheck = mysqli_query($cxn,$sqlcheck)) {
 				}
 			echo "</table>";
 		if(@$_POST[Year_Harvested] == Null) {  
-		$cxn = mysqli_connect($host, $user, $pword, $database)
-			or die ("Couldn't connect to server." . mysqli_error($cxn)); 
 			//AND `Year_Harvested` IS NOT NULL
 		$sql = "SELECT `Notes` 
 				FROM `seedcatalog`

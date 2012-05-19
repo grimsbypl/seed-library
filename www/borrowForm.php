@@ -1,8 +1,20 @@
 <?php
+session_start();
+if($_SESSION['auth'] != "yes")
+{
+  header("Location: Login.php");
+  exit();
+}
+
+$title = "Borrow Seeds";
+include("header.inc");
+
+$today = date("Y-m-d");
 if (isset($message))
 {
   echo "<span style='color: red;'>$message</span>";
 }
+echo "<form action='reviewEntry.php' method ='POST'>\n";
 echo "<p><p style='font-weight: bold'>
 	Please fill in the information for the seeds you are borrowing.  An asterisk * indicates required information</p>";
 
@@ -54,3 +66,4 @@ echo "<p><INPUT TYPE='button' VALUE='Back' onClick='history.go(-1);'>
 echo "<input type='submit' value='Review Entry'>
 	</form>\n";
 ?>
+<?include("footer.inc");?>

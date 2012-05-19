@@ -15,7 +15,7 @@ if(@$_SESSION['auth'] != "yes")
 <?php
   include("misc.inc");
   
-	$cxn = mysqli_connect($host, $user, $pword, $database)
+	$cxn = mysqli_connect($host, $user, $pword, $database, $port)
 	   or die ("Couldn't connect to server." . mysqli_error($cxn));
 
 	$sql = "SELECT  *

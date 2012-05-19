@@ -16,8 +16,8 @@ if(@$_SESSION['auth'] != "yes")
 	<body>
 <?php 
 require_once("misc.inc");
-$cxn = mysqli_connect($host, $user, $pword, $database)
-   or die ("Couldn't connect to server." . mysqli_error($cxn));
+$cxn = mysqli_connect($host, $user, $pword, $database, $port)
+   or die ("Couldn't connect to server." . mysqli_error($cxn));>
 
 /*  Check that First, Last Name, and Email are matches  
 $sql1= "SELECT NameFirst, NameLast, Email 
@@ -52,7 +52,7 @@ $sql .= $updatestring;
 $sql .= " WHERE " . "userseedreg.Email" . " = " . "'" . $_SESSION['logname'] . "'";
 
 
-$cxn = mysqli_connect($host, $user, $pword, $database)
+$cxn = mysqli_connect($host, $user, $pword, $database, $port)
 	   or die ("Couldn't connect to server." . mysqli_error($cxn));
 //echo "$sql<br>";
 //echo "($host, $user, $pword, $database)\n";
