@@ -27,7 +27,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 		$row = mysqli_fetch_assoc($result);
 		$sql = sprintf("INSERT INTO logins (UserID,loginTime) VALUES ('%s',now())", mysql_real_escape_string($row['id']));
 		$result = mysqli_query($cxn,$sql) or die("Can't execute insert query.");
-		header("Location: TransType.php");
+		header("Location: index.php");
 	} else {
 		$message = "Invalid username or password.<br/>";
 	}
@@ -36,7 +36,7 @@ $title = "Login"
 ?>
 <? require_once("header.inc"); ?>
 	<div id="login">
-		<form id="login_form" action='login.php' method='POST'>
+		<form id="login_form" action='Login.php' method='POST'>
 			<div class="field">
 				<span class="label">Email</span>
 				<input type='text' name='Email'/>
