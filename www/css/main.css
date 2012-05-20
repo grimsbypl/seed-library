@@ -1,3 +1,8 @@
+body {
+	font-family: serif;
+	font-size: 14px;
+}
+
 a { color: #006633; }
 a:hover { text-decoration: none; }
 
@@ -64,6 +69,10 @@ h2 {
 	padding-bottom: 1em;
 }
 
+#login div.field input {
+	width: 10.5em;
+}
+
 #login_form span.label {
 	display: block;
 }
@@ -81,7 +90,7 @@ h2 {
 
 #register {
 	margin-left: 1em;
-	width: 15em;
+	width: 18em;
 }
 
 #register form {
@@ -91,7 +100,7 @@ h2 {
 }
 
 #register div.field input {
-	width: 18em;
+	width: 16em;
 }
 
 #register .error_text {

@@ -75,11 +75,11 @@ $title = "Register";
 				<input type='password' name='Password'/>
 			</div>
 			<div class="field">
-				<span class="label">Confrim Password</span>
+				<span class="label">Confirm Password</span>
 				<input type='password' name='ConfirmPassword'/>
 			</div>
 			<input type='submit' value='Register'/>
 		</form>
 		<div class="error_text"><?=$message?></div>
-	</div>	
-<? require_once("footer.inc") ?>	
+	</div>
+<? require_once("footer.inc") ?>

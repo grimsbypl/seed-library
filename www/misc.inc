@@ -1,8 +1,8 @@
 <?php
 $user ="root";
+$pword = "seeds";
 $host ="localhost";
-$port = "8889";
-$pword = "root";
+$port = "3306";
 $database = "seeddb";
 
 if (!isset($cxn)) {

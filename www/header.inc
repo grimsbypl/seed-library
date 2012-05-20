@@ -6,6 +6,6 @@
 <body>
 <div id="container">
 <div id="header">
-	<img class="logo" src="images/logo.png" alt="Logo" />
+	<a href="index.php" title="Home"><img class="logo" src="images/logo.png" alt="Logo" /></a>
 </div>
 <div id="main">
