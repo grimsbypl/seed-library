@@ -1,9 +1,9 @@
-<?php
+<?
 session_start();
-if($_SESSION['auth'] != "yes")
+if ($_SESSION['auth'] != "yes")
 {
-  header("Location: Login.php");
-  exit();
+	header("Location: Login.php");
+	exit();
 }
 
 $title = "Borrow Seeds";

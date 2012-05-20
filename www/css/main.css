@@ -54,6 +54,10 @@ h2 {
 	border-radius: 3px;
 }
 
+#login_left {
+	float: left;
+}
+
 #login {
 	margin-left: 1em;
 	width: 12em;
@@ -86,6 +90,11 @@ h2 {
 	margin-left: 1em;
 	margin-top: 1em;
 	font-size: 0.9em;
+	margin-bottom: 1em;
+}
+
+#login_right {
+	margin-left: 15em;
 }
 
 #register {
