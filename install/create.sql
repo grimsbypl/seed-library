@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `seeddb`;
 CREATE DATABASE IF NOT EXISTS `seeddb`;
 USE `seeddb`;
 
@@ -7,20 +8,27 @@ CREATE TABLE IF NOT EXISTS `logins` (
   PRIMARY KEY (`UserID`,`loginTime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `seedcatalog` (
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Date` datetime NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `SeedID` int(11) NOT NULL,
+  `Count` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `TransactionDate` (`Date`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `seeds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `Common_Name` varchar(40) NOT NULL,
   `Latin_Name` varchar(40) DEFAULT NULL,
-  `Date` date NOT NULL,
   `Variety` varchar(30) NOT NULL,
-  `MemberID` varchar(35) NOT NULL,
   `Year_Harvested` int(4) DEFAULT NULL,
   `Location` varchar(20) NOT NULL,
-  `Experience` varchar(15) NOT NULL,
+  `Experience` tinyint(1) NOT NULL,
   `Notes` varchar(100) NOT NULL,
-  `TransactionID` int(11) NOT NULL AUTO_INCREMENT,
-  `Last_Seed` varchar(4) NOT NULL,
-  PRIMARY KEY (`TransactionID`),
-  UNIQUE KEY `Common_Name` (`Common_Name`,`Date`,`Variety`,`MemberID`)
+  `Last_Seed` tinyint(1) NOT NULL default 0,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -34,6 +42,5 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(50) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  KEY `Email` (`Email`),
-  KEY `DateReg` (`DateReg`)
+  KEY `Email` (`Email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -23,6 +23,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 
 		$_SESSION['auth'] = 1;
 		$_SESSION['logname'] = $login_name;
+		$_SESSION['logid'] = $row['id'];
 		$_SESSION['admin'] = $row['admin'];
 
 		$sql = sprintf("INSERT INTO logins (UserID,loginTime) VALUES ('%s',now())", mysql_real_escape_string($row['id']));
@@ -39,7 +40,7 @@ require_once("inc/header.php");
 	<div id="login_left">
 		<div id="login" class="box">
 			<h2>Member Login</h2>
-			<form id="login_form" action='Login.php' method='POST'>
+			<form id="login_form" action='login.php' method='POST'>
 				<div class="field">
 					<span class="label">Email</span>
 					<input type='text' name='Email'/>

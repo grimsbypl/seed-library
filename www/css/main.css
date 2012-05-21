@@ -54,6 +54,10 @@ h2 {
 	border-radius: 3px;
 }
 
+tr.row_odd {
+	background: #cee2b4;
+}
+
 #login_left {
 	float: left;
 }
@@ -115,4 +119,38 @@ h2 {
 #register .error_text {
 	padding-left: 1em;
 	text-align:center
+}
+
+#transactions {
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+#transactions caption {
+	margin-bottom: 1em;
+}
+
+#transactions thead tr {
+	text-align: left;
+	background: #ceca9b;
+	color: 534741;
+}
+
+#borrow {
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+#borrow caption {
+	margin-bottom: 1em;
+}
+
+#borrow thead tr {
+	text-align: left;
+	background: #ceca9b;
+	color: 534741;
+}
+
+#borrow_buttons {
+	text-align: right;
 }
