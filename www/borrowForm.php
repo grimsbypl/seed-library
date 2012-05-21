@@ -100,3 +100,4 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 	</form>
 	<a href="javascript:history.go(-1)">Back</a>
 <?}?>
+<? include("inc/footer.php"); ?>

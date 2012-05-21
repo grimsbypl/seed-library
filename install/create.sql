@@ -37,8 +37,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `NameFirst` varchar(40) NOT NULL,
   `NameLast` varchar(40) NOT NULL,
   `Email` varchar(35) NOT NULL,
-  `SeedExpLvl` varchar(15) NOT NULL,
-  `GardenExpLvl` varchar(15) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),

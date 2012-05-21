@@ -1,97 +1,87 @@
 <?
 include('inc/session.php');
+include('inc/db.php');
+
+$message = "";
+if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
+	if(!preg_match("/^[A-Za-z' -]{1,50}$/",$_POST['Common_Name'])) {
+		$message = "Invalid Common Name.";
+	}
+	if(!preg_match("/^[A-Za-z' -]{1,50}$/",$_POST['Variety'])) {
+		$message = "Invalid Variety.";
+	}
+	if(!preg_match("/^[A-Za-z' -]{1,50}$/",$_POST['Location'])) {
+		$message = "Invalid Location.";
+	}
+	foreach(array('Common_Name','Variety','Location') as $required_field) {
+		$value = trim($_POST[$required_field]);
+		if (empty($value)) {
+			$message = "$required_field is a required field.";
+			break;
+		}
+	}
+
+	if (empty($message)) {
+		$sql = sprintf("INSERT INTO seeds (Common_Name, Latin_Name, Variety, Year_Harvested, Location, Experience, Notes) VALUES ('%s', '', '%s', %s, '%s', %s, '%s')",
+					mysql_real_escape_string($_POST['Common_Name']),
+					mysql_real_escape_string($_POST['Variety']),
+					mysql_real_escape_string($_POST['Year_Harvested']),
+					mysql_real_escape_string($_POST['Location']),
+					mysql_real_escape_string($_POST['Experience']),
+					mysql_real_escape_string($_POST['Notes'])
+		);
+		mysqli_query($cxn, $sql) or die("Couldn't execute query: $sql" . mysqli_error($cxn));
+		$id = mysqli_insert_id($cxn);
+		$sql = sprintf("INSERT INTO transactions (Date, UserID, SeedID, Count) VALUES (now(), %s, %s, 1)",
+					mysql_real_escape_string($_SESSION['logid']),
+					mysql_real_escape_string($id)
+		);
+		mysqli_query($cxn, $sql) or die("Couldn't execute query: $sql" . mysqli_error($cxn));
+		header("Location: index.php");
+		exit();
+	}
+}
 $page_title = "Lend Seeds";
 include("inc/header.php");
-
-$today = date("Y-m-d");
-$year = date("Y");
-if (isset($message))
-{
-  echo "<span style='color: red;'>$message</span>";
-}
-echo "<form action='reviewEntry.php' method ='POST'>\n";
-echo "<p><p style='font-weight: bold'>
-	Please fill in the information for the seeds you are lending. An asterisk * indicates required information</p>";
-
-echo "<p><tr>
-	<td style='text-align: right;
-		font-weight: bold'>Today's Date </td>
-	<td><input type='text' name='Date' 
-	value='$today' size='10' 
-	maxlength='10'>
-	</td></tr></p>";
-
-
-echo "<tr>
-	<td style='text-align: right;
-		font-weight: bold'>*Common Name</td>
-	<td><input type='text' name='Common_Name' 
-	value='' size='65' 
-	maxlength='65'>
-	</td></tr>";	
-
-echo "<p><tr>
-	<td style='text-align: right;
-		font-weight: bold'>Latin Name </td>
-	<td><input type='text' name='Latin_Name' 
-	value='' size='65' 
-	maxlength='65'>
-	</td></tr></p>";
-
-echo "<p><tr>
-	<td style='text-align: right;
-		font-weight: bold'>Variety </td>
-	<td><input type='text' name='Variety' 
-	value='' size='65' 
-	maxlength='65'>
-	</td></tr></p>";
-
-
-echo "<p><tr>
-<td style='text-align: right;
-	font-weight: bold'>*Year Harvested</td>
-<td>
-<select name='Year_Harvested'>\n";
-echo "<option value='2002' selected='selected'>2002</option>";
-for ($i = $year - 7 ; $i <= $year ; $i++) {
-	echo "<option value=$i>$i</option>";
-}
-	echo "</select><br><br>";
- 
-
-echo "<p><tr>
-	<td style='text-align: right;
-		font-weight: bold'>*Location Harvested </td>
-	<td><input type='text' name='Location' 
-	value='' size='65' 
-	maxlength='65'>
-	</td></tr></p>";
-
-
-echo " <div style='margin-left: 0 in; margin-top: 0in'>
-		*What experience level is needed for gardening/saving this seed?";
-echo "<br><b>(Note: Look at the plant index on our website or at the library<b>" . 
-	" to identify the level of seed saving difficulty.)";
-/*echo "<select name='Experience'>\n
-	 <option value='Easy' selected='selected'>Easy</option>
-	 <option value='Advanced'>Advanced</option>
-	 </select><br><br>";
-	 */
-echo "<br><input type='radio' name='Experience'
-		value='Easy' checked>Easy";
-echo "<br><input type='radio' name='Experience'
-	     value='Advanced'>Advanced\n";	
-echo "<p><tr>
-	<td style='text-align: right;
-		font-weight: bold'>Comments about saving these seeds (ie What does
-			a person need to know about this particular seed?</td>
-	<td><input type='text' name='Notes' 
-	value='' size='100' 
-	maxlength='100'>
-	</td></tr></p>";
-	echo "<p><INPUT TYPE='button' VALUE='Back' onClick='history.go(-1);'>
-	\n";
-echo "<input type='submit' value='Review Entry'>
-	</form>\n";
 ?>
+	Please fill in the information for the seeds you are lending.
+	<div id="lend" class="box">
+		<form id="lend_form" action="lendForm.php" method="POST">
+			<div class="field">
+				<span class="label">Common Name</span>
+				<input type='text' name='Common_Name' value="<?=$_POST['Common_Name']?>"/>
+			</div>
+			<div class="field">
+				<span class="label">Variety</span>
+				<input type='text' name='Variety' value="<?=$_POST['Variety']?>"/>
+			</div>
+			<div class="field">
+				<span class="label">Location Harvested</span>
+				<input type='text' name='Location' value="<?=$_POST['Location']?>"/>
+			</div>
+			<div class="field">
+				<span class="label">Year Harvested</span>
+				<select name="Year_Harvested">
+				<? $today = getdate(); for ($i = 0; $i < 7; ++$i) { $year = $today['year'] - $i; ?>
+					<option value="<?=$year?>" <?=$_POST['Year_Harvested'] == $year ? 'selected="selected"' : ''?>><?=$year?></option>
+				<?}?>
+				</select>
+			</div>
+			<div class="field">
+				<span class="label">What experience level is needed for gardening/saving this seed?</span>
+				<select name="Experience">
+					<option value="0" <?=$_POST['Experience']=='0' ? 'selected="selected"' : ''?>>Unknown</option>
+					<option value="1" <?=$_POST['Experience']=='1' ? 'selected="selected"' : ''?>>Easy</option>
+					<option value="2" <?=$_POST['Experience']=='2' ? 'selected="selected"' : ''?>>Advanced</option>
+				</select>
+			</div>
+			<div class="field">
+				<span class="label">Comments about saving these seeds</span>
+				<textarea name="Notes" cols="40" rows="5"><?= htmlspecialchars($_POST['Notes']) ?></textarea>
+			</div>
+			<input type='submit' value='Submit'>
+		</form>
+		<div class="error_text"><?=$message?></div>
+	</div>
+	<a href="javascript:history.go(-1)">Back</a>
 <?include("inc/footer.php");?>

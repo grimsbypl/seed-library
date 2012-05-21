@@ -54,6 +54,14 @@ h2 {
 	border-radius: 3px;
 }
 
+span.label {
+	display: block;
+}
+
+div.field {
+	padding-bottom: 1em;
+}
+
 tr.row_odd {
 	background: #cee2b4;
 }
@@ -73,16 +81,8 @@ tr.row_odd {
 	border-top: 1px solid #acadab;
 }
 
-#login_form div.field {
-	padding-bottom: 1em;
-}
-
 #login div.field input {
 	width: 10.5em;
-}
-
-#login_form span.label {
-	display: block;
 }
 
 #login .error_text {
@@ -153,4 +153,17 @@ tr.row_odd {
 
 #borrow_buttons {
 	text-align: right;
+}
+
+#lend {
+	margin-bottom: 1em;
+}
+#lend form {
+	padding-left: 1em;
+	padding-top: 1em;
+}
+
+#lend .error_text {
+	padding-bottom: 1em;
+	text-align:center
 }
