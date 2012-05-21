@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title><?=$title?></title>
+	<title><?=$page_title?></title>
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 </head>
 <body>

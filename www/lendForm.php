@@ -1,13 +1,7 @@
-<?php
-session_start();
-if($_SESSION['auth'] != "yes")
-{
-  header("Location: Login.php");
-  exit();
-}
-
-$title = "Lend Seeds";
-include("header.inc");
+<?
+include('inc/session.php');
+$page_title = "Lend Seeds";
+include("inc/header.php");
 
 $today = date("Y-m-d");
 $year = date("Y");
@@ -100,4 +94,4 @@ echo "<p><tr>
 echo "<input type='submit' value='Review Entry'>
 	</form>\n";
 ?>
-<?include("footer.inc");?>
+<?include("inc/footer.php");?>

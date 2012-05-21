@@ -1,13 +1,11 @@
-<?php
-error_reporting(E_ALL); // report all errors
-session_start();
-if(isset($_SESSION['auth']) && $_SESSION['auth'] == "yes")
-{
-  header("Location: index.php");
-  exit();
+<?
+$page_no_auth = 1;
+include('inc/session.php');
+if($is_auth) {
+	header("Location: index.php");
+	exit();
 }
-
-include("misc.inc");
+include("inc/db.php");
 
 $message = "";
 if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
@@ -52,9 +50,10 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 		}
 	}
 }
-$title = "Register";
+
+$page_title = "Register";
+require_once("inc/header.php");
 ?>
-<? require_once("header.inc"); ?>
 	<div id="register" class="box">
 		<h2>Member Registration</h2>
 		<form id="login_form" action='register.php' method='POST'>
@@ -82,4 +81,4 @@ $title = "Register";
 		</form>
 		<div class="error_text"><?=$message?></div>
 	</div>
-<? require_once("footer.inc") ?>
+<? require_once("inc/footer.php") ?>

@@ -1,13 +1,11 @@
 <?
-error_reporting(E_ALL); // report all errors
-session_start();
-if(isset($_SESSION['auth']) && $_SESSION['auth'] == "yes")
-{
+$page_no_auth = 1;
+include('inc/session.php');
+if($is_auth) {
 	header("Location: index.php");
 	exit();
 }
-
-include("misc.inc");
+include("inc/db.php");
 
 $message = "";
 if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
@@ -15,16 +13,18 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 	$login_pass = $_POST['Password'];
 
 	$sql = sprintf(
-		"SELECT id FROM users WHERE Email='%s' AND password=md5('%s')",
+		"SELECT id, admin FROM users WHERE Email='%s' AND password=md5('%s')",
 		mysql_real_escape_string($login_name),
 		mysql_real_escape_string($login_pass));
 	$result = mysqli_query($cxn, $sql) or die("Couldn't execute query: $sql" . mysqli_error($cxn));
 	$num = mysqli_num_rows($result);
 	if ($num > 0) {
-		$_SESSION['auth'] = "yes";
-		$_SESSION['logname'] = $login_name;
-
 		$row = mysqli_fetch_assoc($result);
+
+		$_SESSION['auth'] = 1;
+		$_SESSION['logname'] = $login_name;
+		$_SESSION['admin'] = $row['admin'];
+
 		$sql = sprintf("INSERT INTO logins (UserID,loginTime) VALUES ('%s',now())", mysql_real_escape_string($row['id']));
 		$result = mysqli_query($cxn,$sql) or die("Can't execute insert query.");
 		header("Location: index.php");
@@ -33,8 +33,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
 	}
 }
 
-$title = "Login";
-require_once("header.inc");
+$page_title = "Login";
+require_once("inc/header.php");
 ?>
 	<div id="login_left">
 		<div id="login" class="box">
@@ -59,4 +59,4 @@ require_once("header.inc");
 	<div id="login_right">
 		Welome to the Grimsby Grows.
 	</div>
-<? require_once("footer.inc") ?>
+<? require_once("inc/footer.php") ?>

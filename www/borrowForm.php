@@ -1,13 +1,7 @@
 <?
-session_start();
-if ($_SESSION['auth'] != "yes")
-{
-	header("Location: Login.php");
-	exit();
-}
-
-$title = "Borrow Seeds";
-include("header.inc");
+include('inc/session.php');
+$page_title = "Borrow Seeds";
+include("inc/header.php");
 
 $today = date("Y-m-d");
 if (isset($message))
@@ -66,4 +60,4 @@ echo "<p><INPUT TYPE='button' VALUE='Back' onClick='history.go(-1);'>
 echo "<input type='submit' value='Review Entry'>
 	</form>\n";
 ?>
-<?include("footer.inc");?>
+<?include("inc/footer.php");?>

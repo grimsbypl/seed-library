@@ -1,4 +1,4 @@
-<?php
+<?
 $user ="root";
 $pword = "seeds";
 $host ="localhost";

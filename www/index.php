@@ -1,10 +1,5 @@
 <?
-session_start();
-if($_SESSION['auth'] != "yes")
-{
-	header("Location: Login.php");
-	exit();
-}
+include("inc/session.php");
 
 if (isset($_GET['new'])) {
 	$message = "Welcome New  Member!<br />";
@@ -12,8 +7,8 @@ if (isset($_GET['new'])) {
 	$message = "Welcome Back, Super Seed Saver!<br />";
 }
 
-$title = "Transaction Type";
-include("header.inc");
+$page_title = "Transaction Type";
+include("inc/header.php");
 ?>
 <h2><?=$message?></h2>
 <p>
@@ -24,4 +19,4 @@ What would you like to do:
 	<li><a href="ViewAll.php">View Transactions</a></li>
 </ul>
 </p>
-<?include("footer.inc");?>
+<?include("inc/footer.php");?>
